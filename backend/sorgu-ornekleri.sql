@@ -1,30 +1,20 @@
 -- ============================================================
--- SQL ALIŞTIRMALARI  (1. hafta - Veri Tabanı dersi)
+-- SQL ALIŞTIRMALARI  (Veri Tabanı dersi)
 --
--- Bu dosya uygulama tarafından kullanılmaz; phpMyAdmin'de
--- SQL sekmesine tek tek yapıştırıp denemek için hazırlanmıştır.
+-- ############################################################
+-- !!! BU DOSYAYI TOPTAN ÇALIŞTIRMAYIN !!!
+--
+-- Aşağıdaki sorgular phpMyAdmin'in SQL sekmesine TEK TEK
+-- yapıştırılıp denenmek için hazırlanmıştır. Dosyanın tamamını
+-- birden çalıştırırsanız INSERT / UPDATE / DELETE komutları da
+-- işler ve sitedeki veriler değişir.
+--
+-- Veriyi bozarsanız geri almak kolay: veritabanını silip
+-- database.sql dosyasını yeniden çalıştırın.
+-- ############################################################
 -- ============================================================
 
 USE levelup;
-
--- ------------------------------------------------------------
--- INSERT INTO  (VERİ EKLEME)
--- Kalıp:  INSERT INTO tablo_adi (sutun1, sutun2, ...)
---         VALUES (deger1, deger2, ...);
--- Tek seferde birden fazla satır eklemek için VALUES listelerini
--- virgülle ayırırız.
--- ------------------------------------------------------------
-INSERT INTO users (u_firstName, u_lastName, u_email, u_tel, u_pass, u_birthdate)
-VALUES ('Zen',   'Aydoğuş', 'z.aydogus@gmail.com', '5338888888', '1234', '1999-05-10'),
-       ('Kerem', 'Atlıhan', 'kerem@gmail.com',     '5337777777', '1234', '1998-11-02');
-
-INSERT INTO messages (m_firstName, m_lastName, m_email, m_code, m_phone, m_subject, m_message)
-VALUES ('Zen',   'Aydoğuş', 'z.aydogus@gmail.com', '+90', '5338888888', 'Kargo', 'Hediye paketi istiyorum.'),
-       ('Ahmet', 'Çınar',   'a.cinar@gmail.com',   '+90', '5337777777', 'Kargo', 'Hediye paketi istiyorum.');
-
-INSERT INTO orders (o_no, o_products, o_pids, o_person, o_address, o_amount)
-VALUES (10003, 'Nike,Adidas,Hummel', '1,2,3', 'Zen Aydoğuş', 'Lale Sokak No:6 Manisa', 2000.50),
-       (10004, 'Adidas,Nike',        '2,1',   'Kerem Baş',   'Lale Sokak No:6 İzmir',  1000.00);
 
 -- ------------------------------------------------------------
 -- SELECT  (VERİ OKUMA)
@@ -32,62 +22,118 @@ VALUES (10003, 'Nike,Adidas,Hummel', '1,2,3', 'Zen Aydoğuş', 'Lale Sokak No:6 
 -- ------------------------------------------------------------
 SELECT * FROM products;
 
-SELECT p_name, p_stock, p_price FROM products;
+SELECT p_name, p_category, p_stock, p_price FROM products;
 
--- ORDER BY: sıralama.  DESC = büyükten küçüğe / yeniden eskiye
---                      ASC  = küçükten büyüğe (varsayılan)
-SELECT p_name, p_stock, p_price
-FROM products
-ORDER BY p_created_at DESC;
-
+-- ------------------------------------------------------------
+-- ORDER BY  (SIRALAMA)
+-- DESC = büyükten küçüğe / yeniden eskiye
+-- ASC  = küçükten büyüğe (varsayılan)
+-- ------------------------------------------------------------
 SELECT p_name, p_price
 FROM products
-ORDER BY p_price ASC;
+ORDER BY p_price DESC;
+
+SELECT p_name, p_stock
+FROM products
+ORDER BY p_stock ASC;
 
 -- ------------------------------------------------------------
 -- WHERE  (ŞART / FİLTRELEME)
 -- AND -> iki şart da doğru olmalı
 -- OR  -> şartlardan biri doğru olması yeter
 -- ------------------------------------------------------------
-SELECT * FROM users
-WHERE u_email = 'ahmet@example.com' OR u_email = 'ayse@example.com';
+-- Tek bir kategori
+SELECT p_name, p_price FROM products
+WHERE p_category = 'Oyun';
 
-SELECT * FROM products
-WHERE p_stock > 3 AND p_price < 200;
+-- İki şart birden: stoğu olan ve 3000 TL'den ucuz ürünler
+SELECT p_name, p_stock, p_price FROM products
+WHERE p_stock > 0 AND p_price < 3000;
 
--- Stoğu bitmek üzere olan ürünler
+-- Şartlardan biri yeterli
+SELECT p_name, p_category FROM products
+WHERE p_category = 'Konsol' OR p_category = 'Aksesuar';
+
+-- Belirli bir kullanıcıyı bul
+SELECT u_firstName, u_lastName, u_email, u_role FROM users
+WHERE u_email = 'admin@example.com';
+
+-- Stoğu azalan ürünler (sipariş vermek gerekebilir)
 SELECT p_name, p_stock
 FROM products
-WHERE p_stock < 5
+WHERE p_stock < 10
 ORDER BY p_stock ASC;
+
+-- LIKE: içinde geçen kelimeye göre arama (% = herhangi bir karakter dizisi)
+SELECT p_name, p_price FROM products
+WHERE p_name LIKE '%Switch 2%';
+
+-- ------------------------------------------------------------
+-- COUNT / SUM / AVG  (TOPLU HESAPLAR)
+-- GROUP BY ile gruplara ayırıp her grup için hesap yapılır.
+-- ------------------------------------------------------------
+SELECT COUNT(*) AS toplam_urun FROM products;
+
+SELECT p_category, COUNT(*) AS adet, AVG(p_price) AS ortalama_fiyat
+FROM products
+GROUP BY p_category;
+
+SELECT SUM(o_amount) AS toplam_ciro FROM orders;
+
+-- Sipariş durumlarının dağılımı
+SELECT o_status, COUNT(*) AS adet
+FROM orders
+GROUP BY o_status;
+
+-- ------------------------------------------------------------
+-- INSERT INTO  (VERİ EKLEME)
+-- Kalıp:  INSERT INTO tablo_adi (sutun1, sutun2, ...)
+--         VALUES (deger1, deger2, ...);
+-- Tek seferde birden fazla satır eklemek için VALUES listelerini
+-- virgülle ayırırız.
+--
+-- NOT: Denemek için çalıştırırsanız eklediğiniz satırı en alttaki
+-- DELETE örneğiyle geri silebilirsiniz.
+-- ------------------------------------------------------------
+INSERT INTO users (u_firstName, u_lastName, u_email, u_tel, u_pass, u_birthdate)
+VALUES ('Deneme', 'Kullanıcı', 'deneme@example.com', '5330000000', '1234', '1999-05-10');
+
+INSERT INTO messages (m_firstName, m_lastName, m_email, m_code, m_phone, m_subject, m_message)
+VALUES ('Deneme', 'Kullanıcı', 'deneme@example.com', '+90', '5330000000', 'Genel',
+        'Hediye paketi seçeneği ekler misiniz?');
 
 -- ------------------------------------------------------------
 -- UPDATE  (VERİ GÜNCELLEME)
 -- DİKKAT: WHERE yazmazsan tablodaki BÜTÜN satırlar güncellenir!
 -- ------------------------------------------------------------
--- Adidas'a %20 indirim (200 * 0.80 = 160)
+-- Tek bir ürüne indirim uygula (p_disc, p_price'tan küçükse
+-- sitede eski fiyat üstü çizili görünür)
 UPDATE products
-SET p_price = 200 * 0.80
-WHERE p_name = 'Adidas';
+SET p_disc = 2200.00
+WHERE p_name = 'Star Fox';
 
-SELECT * FROM products;
-
--- Tüm ürünlere %10 zam (mevcut fiyat üzerinden)
+-- Bir ürünün stoğunu değiştir
 UPDATE products
-SET p_price = p_price * 1.10
-WHERE p_stock > 0;
+SET p_stock = 25
+WHERE p_name = 'Splatoon Raiders';
 
 -- Bir siparişin durumunu değiştir
 UPDATE orders
 SET o_status = 'Teslim Edildi'
-WHERE o_no = 10001;
+WHERE o_no = 10005;
+
+-- Yukarıdakileri geri almak için:
+UPDATE products SET p_disc = 2441.36 WHERE p_name = 'Star Fox';
+UPDATE products SET p_stock = 22     WHERE p_name = 'Splatoon Raiders';
+UPDATE orders   SET o_status = 'Hazırlanıyor' WHERE o_no = 10005;
 
 -- ------------------------------------------------------------
 -- DELETE  (VERİ SİLME)
 -- DİKKAT: WHERE yazmazsan tablodaki BÜTÜN satırlar silinir!
 -- ------------------------------------------------------------
+-- Yukarıdaki INSERT örnekleriyle eklenen satırları siler
 DELETE FROM messages
-WHERE m_email = 'a.cinar@gmail.com';
+WHERE m_email = 'deneme@example.com';
 
 DELETE FROM users
-WHERE u_email = 'kerem@gmail.com';
+WHERE u_email = 'deneme@example.com';
