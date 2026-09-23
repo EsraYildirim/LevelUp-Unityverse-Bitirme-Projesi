@@ -83,11 +83,44 @@ SHOW TABLES;  DESCRIBE products;  SELECT * FROM products;
 ## Klasör yapısı
 
 ```
-backend/    server.js (API) · db.js (bağlantı) · *.sql
-frontend/src/
-  views/        sayfalar          components/admin/  panel sekmeleri
-  components/   ortak bileşenler  components/examples/  ders örnekleri
-  utils/        fiyat, tarih, doğrulama, oturum, iletişim yardımcıları
+backend/                    Sunucu ve veritabanı
+  server.js                 Tüm API uçları
+  db.js                     MySQL bağlantısı
+  database.sql              Sıfırdan kurulum (şema + veriler)
+  sorgu-ornekleri.sql       Ders örneği SQL sorguları
+  migration-*.sql           Veritabanının adım adım gelişimi
+  .env.example              Bağlantı ayarları şablonu
+  json-db/                  MySQL'e geçmeden önceki JSON verileri (arşiv)
+
+frontend/                   Arayüz
+  index.html                Giriş noktası
+  vite.config.js            Vite ayarları
+  public/img/urunler/       Ürün görselleri
+  src/
+    main.js                 Uygulamayı başlatır
+    router.js               Adresler ve sayfa erişim kuralları
+    style.css               Genel tasarım (renkler, formlar, butonlar)
+    App.vue                 Ana bileşen, sepeti burada tutar
+    views/                  Sayfalar (Home, Products, Checkout, Admin ...)
+    components/             Ortak bileşenler
+      Navbar.vue            Üst menü
+      Footer.vue            Alt bilgi
+      Secim.vue             Açılır liste bileşeni
+      Bildirimler.vue       Sağ üstteki uyarı kutuları
+      PanelKenar.vue        Panel yan menüsü
+      admin/                Yönetim paneli sekmeleri (ürün, kullanıcı,
+                            sipariş, mesaj)
+      auth/                 Giriş ve kayıt formları
+      examples/             Derste işlenen Vue konularının örnekleri
+                            (Admin > Ders Notları sayfasında görünür)
+    utils/                  Yardımcı dosyalar
+      para.js               Fiyat biçimlendirme
+      tarih.js              Tarih biçimlendirme
+      validators.js         Form doğrulama kuralları
+      oturum.js             Giriş durumu ve rol
+      teslimat.js           Ülke, şehir ve telefon kodu listesi
+      iletisim.js           İletişim bilgileri
+      bildirim.js           Bildirim kuyruğu
 ```
 
 ## Notlar
