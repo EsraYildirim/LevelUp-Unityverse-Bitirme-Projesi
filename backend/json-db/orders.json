@@ -1,0 +1,4 @@
+[
+  { "id": 1, "o_no": 10001, "o_products": ["Nike", "Adidas"], "o_pids": [1, 2], "o_person": "Ahmet ÇINAR", "o_address": "Bağdat Cd. No:12 İstanbul/Türkiye", "o_amount": 550, "o_date": "13.05.2026", "o_status": "Hazırlanıyor" },
+  { "id": 2, "o_no": 10002, "o_products": ["Hummel"], "o_pids": [3], "o_person": "Kerem ATLIHAN", "o_address": "Cumhuriyet Mah. No:4 Ankara/Türkiye", "o_amount": 2000, "o_date": "13.05.2026", "o_status": "Kargoya Verildi" }
+]

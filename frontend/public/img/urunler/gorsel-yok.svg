@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400" role="img" aria-label="Görseli olmayan ürün">
+<rect width="300" height="400" fill="#221f45"/>
+<rect x="6" y="6" width="288" height="388" fill="none" stroke="#0b0a18" stroke-width="8"/>
+<rect x="14" y="14" width="272" height="372" fill="none" stroke="#9a94c7" stroke-width="3"/>
+<rect x="72" y="104" width="19" height="19" fill="#9a94c7"/>
+<rect x="91" y="85" width="19" height="19" fill="#9a94c7"/>
+<rect x="110" y="85" width="19" height="19" fill="#9a94c7"/>
+<rect x="129" y="85" width="19" height="19" fill="#9a94c7"/>
+<rect x="148" y="85" width="19" height="19" fill="#9a94c7"/>
+<rect x="167" y="85" width="19" height="19" fill="#9a94c7"/>
+<rect x="186" y="85" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="104" width="19" height="19" fill="#9a94c7"/>
+<rect x="72" y="123" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="123" width="19" height="19" fill="#9a94c7"/>
+<rect x="72" y="142" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="142" width="19" height="19" fill="#9a94c7"/>
+<rect x="72" y="161" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="161" width="19" height="19" fill="#9a94c7"/>
+<rect x="72" y="180" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="180" width="19" height="19" fill="#9a94c7"/>
+<rect x="72" y="199" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="199" width="19" height="19" fill="#9a94c7"/>
+<rect x="72" y="218" width="19" height="19" fill="#9a94c7"/>
+<rect x="91" y="237" width="19" height="19" fill="#9a94c7"/>
+<rect x="110" y="237" width="19" height="19" fill="#9a94c7"/>
+<rect x="129" y="237" width="19" height="19" fill="#9a94c7"/>
+<rect x="148" y="237" width="19" height="19" fill="#9a94c7"/>
+<rect x="167" y="237" width="19" height="19" fill="#9a94c7"/>
+<rect x="186" y="237" width="19" height="19" fill="#9a94c7"/>
+<rect x="205" y="218" width="19" height="19" fill="#9a94c7"/>
+<rect x="129" y="123" width="19" height="19" fill="#ffc531"/>
+<rect x="148" y="123" width="19" height="19" fill="#ffc531"/>
+<rect x="167" y="142" width="19" height="19" fill="#ffc531"/>
+<rect x="148" y="161" width="19" height="19" fill="#ffc531"/>
+<rect x="148" y="180" width="19" height="19" fill="#ffc531"/>
+<rect x="148" y="218" width="19" height="19" fill="#ffc531"/>
+<rect x="14" y="304" width="272" height="82" fill="#0b0a18"/>
+<text x="150" y="340" text-anchor="middle" font-family="Courier New, monospace" font-weight="bold" font-size="22" letter-spacing="2" fill="#f3f0ff">GÖRSEL</text>
+<text x="150" y="372" text-anchor="middle" font-family="Courier New, monospace" font-weight="bold" font-size="22" letter-spacing="2" fill="#9a94c7">YOK</text>
+</svg>

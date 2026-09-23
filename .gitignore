@@ -1,0 +1,13 @@
+# Ortam değişkenleri — veritabanı parolası burada, asla gönderilmemeli
+.env
+.env.local
+
+# Bağımlılıklar ve derleme çıktısı
+node_modules/
+dist/
+
+# İşletim sistemi ve editör dosyaları
+.DS_Store
+.vscode/
+.idea/
+*.log

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "firstName": "Ahmet",
+    "lastName": "Yılmaz",
+    "email": "ahmet@example.com",
+    "tel": "1234567890",
+    "pass": "password1",
+    "birthdate": "1995-04-12"
+  },
+  {
+    "id": 2,
+    "firstName": "Mehmet",
+    "lastName": "Kaya",
+    "email": "mehmet@example.com",
+    "tel": "0987654321",
+    "pass": "password2",
+    "birthdate": "1990-09-23"
+  },
+  {
+    "id": 3,
+    "firstName": "Ayşe",
+    "lastName": "Demir",
+    "email": "ayse@example.com",
+    "tel": "1122334455",
+    "pass": "password3",
+    "birthdate": "2000-01-05"
+  }
+]

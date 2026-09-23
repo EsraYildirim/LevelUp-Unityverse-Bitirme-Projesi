@@ -1,0 +1,5 @@
+# Veritabanı şifresi burada, asla GitHub'a gitmemeli
+.env
+
+node_modules
+*.log

@@ -1,0 +1,681 @@
+/* ==========================================================================
+   LevelUp — Retro Arcade Tema
+   Bölümler: Değişkenler / Pixel Kuralları / Tipografi / Butonlar /
+             Formlar / Kartlar & Paneller / Tablolar / Rozetler /
+             Sayfa Başlığı / Ders Notları / Responsive
+   ========================================================================== */
+
+/* ===== 1. Değişkenler ===================================================== */
+:root {
+  /* Renkler */
+  --zemin: #12102a;
+  --panel: #221f45;
+  --cerceve: #0b0a18;
+  --kirmizi: #e5372f;
+  --sari: #ffc531;
+  --turkuaz: #3fd9c4;
+  --metin: #f3f0ff;
+  --metin-soluk: #9a94c7;
+
+  /* Pixel görünümünün üç temel ölçüsü */
+  --kenar: 3px solid var(--cerceve);
+  /* Form kutuları için görünür kenarlık: --cerceve koyu sayfa zemininde
+     kayboluyordu, bu ton hem --zemin hem --panel üzerinde seçiliyor */
+  --kenar-form: 3px solid #4a4283;
+  --golge: 4px 4px 0 var(--cerceve);
+  --golge-buyuk: 6px 6px 0 var(--cerceve);
+
+  /* Yazı tipleri */
+  --font-baslik: 'Press Start 2P', 'Courier New', monospace;
+  --font-govde: 'Chakra Petch', 'Segoe UI', sans-serif;
+
+  /* Üst menü yüksekliği: sticky-top navbar'ın altına yapışan öğeler
+     (panel kenar çubuğu gibi) bu kadar aşağıdan başlamalı */
+  --navbar-yukseklik: 67px;
+
+  /* Boşluklar */
+  --bosluk-kucuk: 8px;
+  --bosluk: 16px;
+  --bosluk-buyuk: 32px;
+}
+
+/* ===== 2. Pixel Kuralları ================================================= */
+
+/* Kural 1: Sitede hiçbir yerde yuvarlak köşe yok.
+   Bootstrap kendi yuvarlaklıklarını getirdiği için tek satırda bastırıyoruz. */
+* {
+  border-radius: 0 !important;
+}
+
+/* Kural 3: Tüm görseller pixel görünümünde */
+img {
+  image-rendering: pixelated;
+}
+
+/* Klavyeyle gezinirken odak her zaman görünür olsun */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--sari);
+  outline-offset: 2px;
+}
+
+/* ===== 3. Tipografi ======================================================= */
+
+/* Press Start 2P çok geniş bir font, sadece kısa metinlerde kullanılıyor */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-baslik);
+  color: var(--metin);
+  line-height: 1.5;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 15px;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 13px;
+}
+
+p {
+  line-height: 1.6;
+}
+
+/* Uzun metinler 70 karakteri geçmesin */
+.metin-blogu {
+  max-width: 65ch;
+}
+
+/* ===== 4. Butonlar ======================================================== */
+
+/* Tüm butonlar: sert kenarlık + blursuz gölge.
+   Hover'da yukarı-sola kayar, tıklanınca gölgenin üstüne oturur. */
+.btn {
+  font-family: var(--font-baslik);
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 12px 18px;
+  border: var(--kenar);
+  box-shadow: var(--golge);
+  color: var(--metin);
+  background-color: var(--panel);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background-color 0.1s ease;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--golge-buyuk);
+  color: var(--metin);
+}
+
+.btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0 0 0 var(--cerceve);
+}
+
+.btn-primary {
+  background-color: var(--kirmizi);
+  border: var(--kenar);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--kirmizi);
+  border: var(--kenar);
+  color: #fff;
+}
+
+.btn-primary:disabled {
+  background-color: #4a4670;
+  border: var(--kenar);
+  color: var(--metin-soluk);
+  box-shadow: var(--golge);
+  transform: none;
+}
+
+/* İkincil buton: turkuaz */
+.btn-outline-primary,
+.btn-secondary {
+  background-color: var(--turkuaz);
+  border: var(--kenar);
+  color: var(--cerceve);
+}
+
+.btn-outline-primary:hover,
+.btn-secondary:hover {
+  background-color: var(--turkuaz);
+  border: var(--kenar);
+  color: var(--cerceve);
+}
+
+.btn-outline-danger {
+  background-color: var(--kirmizi);
+  border: var(--kenar);
+  color: #fff;
+}
+
+.btn-outline-danger:hover {
+  background-color: var(--kirmizi);
+  border: var(--kenar);
+  color: #fff;
+}
+
+.btn-outline-success {
+  background-color: var(--sari);
+  border: var(--kenar);
+  color: var(--cerceve);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--sari);
+  border: var(--kenar);
+  color: var(--cerceve);
+}
+
+.btn-light {
+  background-color: var(--sari);
+  border: var(--kenar);
+  color: var(--cerceve);
+}
+
+.btn-sm {
+  font-size: 10px;
+  padding: 8px 10px;
+}
+
+.btn-lg {
+  font-size: 14px;
+  padding: 16px 26px;
+}
+
+/* ===== Logo ===== */
+.marka {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  font-family: var(--font-baslik);
+  font-size: 15px;
+  line-height: 1;
+  text-decoration: none !important;
+  white-space: nowrap;
+}
+
+.marka__level {
+  color: var(--sari);
+  /* Sert pixel gölgesi: yumuşak blur yok, tek blok kayma */
+  text-shadow: 2px 2px 0 var(--cerceve);
+}
+
+.marka__up {
+  padding: 5px 6px 4px;
+  color: #fff;
+  background-color: var(--kirmizi);
+  border: 2px solid var(--cerceve);
+  box-shadow: 2px 2px 0 var(--cerceve);
+}
+
+/* Pixel yukarı ok: "LevelUp" — seviye atla */
+.marka__ok {
+  width: 14px;
+  height: 14px;
+  fill: var(--sari);
+  /* Yazı taban çizgisiyle hizalı dursun */
+  flex-shrink: 0;
+}
+
+/* Footer'daki hali: imleç yok, biraz daha küçük */
+.marka--footer {
+  font-size: 13px;
+  margin-bottom: var(--bosluk);
+}
+
+/* ===== 5. Formlar ========================================================= */
+.form-control,
+.form-select {
+  font-family: var(--font-govde);
+  font-size: 16px;
+  /* Kutu zemini sayfadan koyu, kenarlık sayfadan açık: hem --zemin hem
+     --panel üzerinde kutunun sınırları net görünür */
+  background-color: var(--cerceve);
+  border: var(--kenar-form);
+  box-shadow: var(--golge);
+  color: var(--metin);
+  padding: 10px 12px;
+}
+
+/* Odaklanınca turkuaz kenarlık: hangi alanda olduğun belli olsun */
+.form-control:focus,
+.form-select:focus {
+  background-color: var(--cerceve);
+  border: 3px solid var(--turkuaz);
+  box-shadow: var(--golge);
+  color: var(--metin);
+}
+
+/* Input grubu eki (ödeme sayfasındaki "+90" gibi): Bootstrap varsayılanı
+   beyazdı, koyu temada yamalı duruyordu */
+.input-group-text {
+  color: var(--metin);
+  background-color: var(--panel);
+  border: var(--kenar-form);
+  box-shadow: var(--golge);
+}
+
+/* Kaydırma çubuğu (Ders Notları'ndaki örnekler): tarayıcı varsayılanı
+   koyu panelde görünmüyordu */
+.form-range {
+  background-color: transparent;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 8px;
+  background-color: var(--cerceve);
+  border: 2px solid var(--metin-soluk);
+}
+
+.form-range::-webkit-slider-thumb {
+  margin-top: -8px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--kirmizi);
+  border: 2px solid var(--cerceve);
+}
+
+.form-range::-moz-range-track {
+  height: 8px;
+  background-color: var(--cerceve);
+  border: 2px solid var(--metin-soluk);
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background-color: var(--kirmizi);
+  border: 2px solid var(--cerceve);
+}
+
+/* Dosya seçme butonu koyu zeminde okunur olsun */
+.form-control::file-selector-button {
+  font-family: var(--font-govde);
+  color: var(--cerceve);
+  background-color: var(--turkuaz);
+  border: 0;
+  border-right: var(--kenar-form);
+  padding: 10px 12px;
+  margin: -10px 12px -10px -12px;
+  cursor: pointer;
+}
+
+.form-control::file-selector-button:hover {
+  background-color: var(--sari);
+}
+
+.form-control::placeholder {
+  color: var(--metin-soluk);
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: var(--panel);
+  border-color: var(--metin-soluk);
+  color: var(--metin-soluk);
+}
+
+.form-label,
+.col-form-label {
+  font-family: var(--font-baslik);
+  font-size: 10px;
+  color: var(--metin);
+  margin-bottom: var(--bosluk-kucuk);
+}
+
+/* Kutucuğun kenarlığı --cerceve (neredeyse siyah) olduğunda koyu panel
+   üzerinde kaybolıyordu; turkuaz kenarlıkla her zemin üzerinde görünür. */
+.form-check-input {
+  width: 20px;
+  height: 20px;
+  margin-top: 0.15em;
+  background-color: var(--zemin);
+  border: 3px solid var(--turkuaz);
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.form-check-input:hover {
+  background-color: var(--cerceve);
+}
+
+.form-check-input:checked {
+  background-color: var(--kirmizi);
+  border-color: var(--kirmizi);
+}
+
+/* Klavyeyle gezinenler için belirgin odak halkası */
+.form-check-input:focus,
+.form-check-input:focus-visible {
+  border-color: var(--sari);
+  box-shadow: 0 0 0 3px rgba(255, 197, 49, 0.35);
+}
+
+.form-check-label {
+  color: var(--metin);
+  cursor: pointer;
+}
+
+.form-select option {
+  background-color: var(--panel);
+  color: var(--metin);
+}
+
+/* Tarayıcının otomatik doldurma beyazını bastır */
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--metin);
+  -webkit-box-shadow: 0 0 0 1000px var(--zemin) inset;
+}
+
+input[type='date']::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
+}
+
+/* ===== 6. Kartlar & Paneller ============================================= */
+
+/* Sitedeki tüm kutuların ortak görünümü */
+.panel,
+.card,
+.modal-content,
+.list-group-item {
+  background-color: var(--panel);
+  border: var(--kenar);
+  color: var(--metin);
+}
+
+.panel,
+.card,
+.modal-content {
+  box-shadow: var(--golge);
+}
+
+.list-group-item {
+  border-bottom-width: 0;
+}
+
+.list-group-item:last-child {
+  border-bottom-width: 3px;
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--cerceve);
+  border-width: 3px;
+}
+
+.modal-title {
+  font-family: var(--font-baslik);
+  font-size: 14px;
+}
+
+.btn-close {
+  filter: invert(1);
+  opacity: 1;
+}
+
+/* ===== 7. Tablolar ======================================================== */
+.table {
+  --bs-table-color: var(--metin);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--cerceve);
+  --bs-table-striped-color: var(--metin);
+  --bs-table-striped-bg: rgba(11, 10, 24, 0.35);
+  --bs-table-hover-color: var(--metin);
+  --bs-table-hover-bg: rgba(63, 217, 196, 0.1);
+  color: var(--metin);
+  vertical-align: middle;
+  margin-bottom: 0;
+}
+
+.table > thead {
+  background-color: var(--cerceve);
+}
+
+.table > thead th {
+  font-family: var(--font-baslik);
+  font-size: 10px;
+  color: var(--sari);
+  padding: 14px 10px;
+  white-space: nowrap;
+}
+
+.table-responsive {
+  background-color: var(--panel);
+  border: var(--kenar);
+  box-shadow: var(--golge);
+}
+
+/* ===== 8. Rozetler & Uyarılar ============================================ */
+.badge {
+  font-family: var(--font-baslik);
+  font-size: 9px;
+  padding: 6px 8px;
+  border: 2px solid var(--cerceve);
+}
+
+.alert {
+  border: var(--kenar);
+  box-shadow: var(--golge);
+  font-family: var(--font-govde);
+}
+
+.alert-success {
+  background-color: var(--turkuaz);
+  color: var(--cerceve);
+}
+
+.alert-danger {
+  background-color: var(--kirmizi);
+  color: #fff;
+}
+
+.alert-info {
+  background-color: var(--sari);
+  color: var(--cerceve);
+}
+
+.text-muted,
+.text-body-secondary,
+.form-text {
+  color: var(--metin-soluk) !important;
+}
+
+.invalid-feedback {
+  color: var(--kirmizi);
+  font-weight: 600;
+}
+
+/* ===== 9. Sayfa Başlığı ================================================== */
+.page-header {
+  background-color: var(--panel);
+  border-bottom: var(--kenar);
+  padding: var(--bosluk-buyuk) var(--bosluk);
+  text-align: center;
+  margin-bottom: var(--bosluk-buyuk);
+}
+
+.page-header__title {
+  font-size: 24px;
+  color: var(--sari);
+  margin-bottom: var(--bosluk);
+}
+
+.page-header__subtitle {
+  font-family: var(--font-govde);
+  font-size: 16px;
+  color: var(--metin-soluk);
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+/* Giriş animasyonu (tek ve basit) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.fade-in--delay-1 {
+  animation-delay: 0.1s;
+}
+
+.fade-in--delay-2 {
+  animation-delay: 0.2s;
+}
+
+.fade-in--delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* ===== 10. Ders Notları (kurs örnekleri kabuğu) ========================== */
+.test-example {
+  margin-top: var(--bosluk-buyuk);
+  background-color: var(--panel);
+  border: var(--kenar);
+  box-shadow: var(--golge);
+  padding: var(--bosluk-buyuk) var(--bosluk);
+  color: var(--metin);
+}
+
+.test-example__title {
+  font-family: var(--font-baslik);
+  font-size: 13px;
+  color: var(--sari);
+  padding-bottom: var(--bosluk);
+  border-bottom: var(--kenar);
+  margin-bottom: var(--bosluk);
+}
+
+.test-example__subtitle {
+  font-family: var(--font-govde);
+  font-size: 16px;
+  color: var(--metin-soluk);
+  margin-bottom: var(--bosluk);
+}
+
+.test-example__input {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.test-example__list {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.test-example__list li {
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--cerceve);
+}
+
+.test-example__list li:last-child {
+  border-bottom: none;
+}
+
+.test-example table {
+  text-align: left;
+}
+
+.test-example__img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin: 0 var(--bosluk-kucuk);
+  border: var(--kenar);
+  background-color: var(--zemin);
+  padding: var(--bosluk-kucuk);
+}
+
+.test-example__checkboxes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--bosluk-kucuk);
+}
+
+.test-example__checkboxes .form-check {
+  display: flex;
+  align-items: center;
+  gap: var(--bosluk-kucuk);
+  background-color: var(--zemin);
+  border: 2px solid var(--cerceve);
+  padding: 6px 12px;
+}
+
+/* ===== 11. Responsive ==================================================== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  .page-header__title {
+    font-size: 18px;
+  }
+
+  .btn {
+    font-size: 11px;
+    padding: 10px 14px;
+  }
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 14px;
+  }
+
+  .page-header__title {
+    font-size: 15px;
+  }
+
+  .test-example {
+    padding: var(--bosluk);
+  }
+}
